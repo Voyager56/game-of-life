@@ -60,7 +60,6 @@ function setup() {
 }
  
 function draw() {
-  ful
   background(220);
   stroke(100)
   let nextgen = makearray(rows,cols)
