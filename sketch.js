@@ -1,4 +1,4 @@
-function makearray(rows,cols){
+function makearray(cols,rows){
   let array
   array = new Array(cols).fill(0)
   for(let i=0;i<cols;i++){
@@ -50,23 +50,45 @@ function show(grid,cols,rows,resolution){
     }
   }
 }
-const rows = 70;
-const cols = 70;
+let rows = 60;
+let cols = 60;
 let grid;
+let start = 'off';
 function setup() {
-   grid = makearray(rows,cols);
+   button = createButton('start')
+   stopbtn = createButton('stop')
+   reset = createButton('reset')
+
+   button.mousePressed(() => {
+     start = 'on'
+     console.log(start)
+    })
+    stopbtn.mousePressed(()=>{
+      start = 'off'
+      console.log(start)
+
+    })
+    reset.mousePressed(()=>{
+      grid = makearray(cols,rows);
+      grid = randomgrid(grid,rows,cols);
+    })
+   grid = makearray(cols,rows);
    grid = randomgrid(grid,rows,cols);
-  createCanvas(400, 400);
+  createCanvas(800, 800);
 }
  
 function draw() {
-  ful
   background(220);
   stroke(100)
-  let nextgen = makearray(rows,cols)
+  let nextgen = makearray(cols,rows)
   const resolution = width/rows;
-  show(grid,cols,rows,resolution)
-  grid = generategeneration(grid,cols,rows,nextgen);
+  if(start == 'off'){
+    show(grid,cols,rows,resolution)
+  }
+  if(start == 'on'){
+    show(grid,cols,rows,resolution)
+    grid = generategeneration(grid,cols,rows,nextgen);
+  }
 }
 
 function neighbor(grid,col,row){
