@@ -6,12 +6,6 @@ function makearray(cols,rows){
   } 
   return array;
 }
-function mod(n, m) {
-  if(m!=0){
-  return ((n % m) + m) % m;
-  }
-  else{return }
-}
 function randomgrid(grid,rows,cols){
     for(let i = 0; i<cols;i++){
       for(let j =0;j<rows;j++){
@@ -21,6 +15,18 @@ function randomgrid(grid,rows,cols){
   return grid
 }
 
+function neighbor(grid,col,row){
+  let counter = 0;
+  for(let i =-1;i<2;i++){
+    for(let j = -1;j<2;j++){
+       let newI = (col+j+cols)%cols;
+       let newJ = (row+i+rows)%rows;
+      counter += grid[newI][newJ]
+    }
+  }
+  counter -= grid[col][row]
+  return counter;
+}
 function generategeneration(grid,cols,rows,nextgen){
   for(let i= 0; i<cols;i++){
     for(let j=0;j<rows;j++){
@@ -37,7 +43,7 @@ function generategeneration(grid,cols,rows,nextgen){
       }
     }
   }
-
+  
   return nextgen;
 }
 function show(grid,cols,rows,resolution){
@@ -72,9 +78,9 @@ function setup() {
       grid = makearray(cols,rows);
       grid = randomgrid(grid,rows,cols);
     })
-   grid = makearray(cols,rows);
-   grid = randomgrid(grid,rows,cols);
-  createCanvas(800, 800);
+    grid = makearray(cols,rows);
+    grid = randomgrid(grid,rows,cols);
+    createCanvas(800, 800);
 }
  
 function draw() {
@@ -89,17 +95,4 @@ function draw() {
     show(grid,cols,rows,resolution)
     grid = generategeneration(grid,cols,rows,nextgen);
   }
-}
-
-function neighbor(grid,col,row){
-  let counter = 0;
-  for(let i =-1;i<2;i++){
-    for(let j = -1;j<2;j++){
-       let newI = (col+j+cols)%cols;
-       let newJ = (row+i+rows)%rows;
-      counter += grid[newI][newJ]
-    }
-  }
-  counter -= grid[col][row]
-  return counter;
 }
