@@ -1,12 +1,7 @@
-function makearray(cols,rows){
-  let array
-  array = new Array(cols).fill(0)
-  for(let i=0;i<cols;i++){
-    array[i] = new Array(rows).fill(0)
-  } 
-  return array;
+function makeArray(cols,rows){
+  return Array(cols).fill(0).map(() => Array(rows).fill(0));;
 }
-function randomgrid(grid,rows,cols){
+function randomGrid(grid,rows,cols){
     for(let i = 0; i<cols;i++){
       for(let j =0;j<rows;j++){
         grid[i][j] = Math.floor(random(2))
@@ -27,7 +22,7 @@ function neighbor(grid,col,row){
   counter -= grid[col][row]
   return counter;
 }
-function generategeneration(grid,cols,rows,nextgen){
+function nextGeneration(grid,cols,rows,nextgen){
   for(let i= 0; i<cols;i++){
     for(let j=0;j<rows;j++){
       let p = grid[i][j]
@@ -67,32 +62,30 @@ function setup() {
 
    button.mousePressed(() => {
      start = 'on'
-     console.log(start)
     })
     stopbtn.mousePressed(()=>{
       start = 'off'
-      console.log(start)
 
     })
     reset.mousePressed(()=>{
-      grid = makearray(cols,rows);
-      grid = randomgrid(grid,rows,cols);
+      grid = makeArray(cols,rows);
+      grid = randomGrid(grid,rows,cols);
     })
-    grid = makearray(cols,rows);
-    grid = randomgrid(grid,rows,cols);
+    grid = makeArray(cols,rows);
+    grid = randomGrid(grid,rows,cols);
     createCanvas(800, 800);
 }
  
 function draw() {
   background(220);
   stroke(100)
-  let nextgen = makearray(cols,rows)
+  let nextgen = makeArray(cols,rows)
   const resolution = width/rows;
   if(start == 'off'){
     show(grid,cols,rows,resolution)
   }
   if(start == 'on'){
     show(grid,cols,rows,resolution)
-    grid = generategeneration(grid,cols,rows,nextgen);
+    grid = nextGeneration(grid,cols,rows,nextgen);
   }
 }
