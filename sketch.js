@@ -86,13 +86,13 @@ function setup() {
 
    })
    raondombtn.mousePressed(()=>{
-     grid = makearray(cols,rows);
+     grid = makeArray(cols,rows);
      grid = randomgrid(grid,rows,cols);
    })
    reset.mousePressed(()=>{
-     grid = makearray(cols,rows);
+     grid = makeArray(cols,rows);
    })
-  grid = makearray(cols,rows);
+  grid = makeArray(cols,rows);
  createCanvas(800, 800);
 }
  
