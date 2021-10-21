@@ -67,6 +67,7 @@ function show(grid,cols,rows,resolution){
     }
   }
 }
+
 let rows = 60;
 let cols = 60;
 let grid;
