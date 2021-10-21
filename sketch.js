@@ -78,9 +78,12 @@ function setup() {
   raondombtn = createButton('random')
   button.mousePressed(() => {
     start = 'on'
+    console.log(start)
    })
    stopbtn.mousePressed(()=>{
      start = 'off'
+     console.log(start)
+
    })
    raondombtn.mousePressed(()=>{
      grid = makearray(cols,rows);
@@ -89,8 +92,8 @@ function setup() {
    reset.mousePressed(()=>{
      grid = makearray(cols,rows);
    })
-    grid = makeArray(cols,rows);
-    createCanvas(800, 800);
+  grid = makearray(cols,rows);
+ createCanvas(800, 800);
 }
  
 function draw() {
