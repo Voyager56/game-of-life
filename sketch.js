@@ -67,7 +67,6 @@ function show(grid,cols,rows,resolution){
     }
   }
 }
-
 let rows = 60;
 let cols = 60;
 let grid;
@@ -88,10 +87,11 @@ function setup() {
    })
    raondombtn.mousePressed(()=>{
      grid = makeArray(cols,rows);
-     grid = randomgrid(grid,rows,cols);
+     grid = randomGrid(grid,rows,cols);
    })
    reset.mousePressed(()=>{
      grid = makeArray(cols,rows);
+     start = 'off'
    })
   grid = makeArray(cols,rows);
  createCanvas(800, 800);
