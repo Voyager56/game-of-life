@@ -1,6 +1,7 @@
 function makeArray(cols,rows){
   return Array(cols).fill(0).map(() => Array(rows).fill(0));;
 }
+
 function randomGrid(grid,rows,cols){
     for(let i = 0; i<cols;i++){
       for(let j =0;j<rows;j++){
@@ -22,6 +23,7 @@ function neighbor(grid,col,row){
   counter -= grid[col][row]
   return counter;
 }
+
 function nextGeneration(grid,cols,rows,nextgen){
   for(let i= 0; i<cols;i++){
     for(let j=0;j<rows;j++){
@@ -41,13 +43,27 @@ function nextGeneration(grid,cols,rows,nextgen){
   
   return nextgen;
 }
+
+function mouseClicked(){
+  let resolution = (width/rows);
+  newI = Math.floor(mouseX/resolution);
+  newJ = Math.floor(mouseY/resolution);
+  if(grid[newI][newJ]==1){
+    grid[newI][newJ] = 0;
+  }else{
+    grid[newI][newJ] = 1;
+  }
+}
+
 function show(grid,cols,rows,resolution){
   for(let i = 0; i<cols;i++){
     for(let j =0;j<rows;j++){
-      square(i*resolution,j*resolution,resolution)
       if(grid[i][j] == 1){
         fill(0)
-      }else{fill(255)}
+      }else{
+        fill(255)
+      }
+      square(i*resolution,j*resolution,resolution)
     }
   }
 }
@@ -56,21 +72,23 @@ let cols = 60;
 let grid;
 let start = 'off';
 function setup() {
-   button = createButton('start')
-   stopbtn = createButton('stop')
-   reset = createButton('reset')
-
-   button.mousePressed(() => {
-     start = 'on'
-    })
-    stopbtn.mousePressed(()=>{
-      start = 'off'
-
-    })
-    reset.mousePressed(()=>{
-      grid = makeArray(cols,rows);
-      grid = randomGrid(grid,rows,cols);
-    })
+  button = createButton('start')
+  stopbtn = createButton('stop')
+  reset = createButton('reset')
+  raondombtn = createButton('random')
+  button.mousePressed(() => {
+    start = 'on'
+   })
+   stopbtn.mousePressed(()=>{
+     start = 'off'
+   })
+   raondombtn.mousePressed(()=>{
+     grid = makearray(cols,rows);
+     grid = randomgrid(grid,rows,cols);
+   })
+   reset.mousePressed(()=>{
+     grid = makearray(cols,rows);
+   })
     grid = makeArray(cols,rows);
     grid = randomGrid(grid,rows,cols);
     createCanvas(800, 800);
