@@ -90,7 +90,6 @@ function setup() {
      grid = makearray(cols,rows);
    })
     grid = makeArray(cols,rows);
-    grid = randomGrid(grid,rows,cols);
     createCanvas(800, 800);
 }
  
